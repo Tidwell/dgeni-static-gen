@@ -5,7 +5,7 @@ var _ = require('lodash');
 /**
  * @dgProcessor handlebarsTemplatesProcessor
  * @description
- * Register handlebars partials
+ * Register all handlebars templates used
  */
 module.exports = function handlebarsTemplatesProcessor(templateEngine, fileReader, templateFinder, handlebarsTemplateRenderers) {
 	return {

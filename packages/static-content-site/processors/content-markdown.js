@@ -3,7 +3,7 @@ var marked = require('marked');
 /**
  * @dgProcessor contentMarkdownProcessor
  * @description
- * Remove docs that do not contain the ngdoc tag
+ * process doc content for markdown
  */
 module.exports = function contentMarkdownProcessor(log) {
 	return {

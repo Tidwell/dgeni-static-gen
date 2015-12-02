@@ -1,24 +1,24 @@
 var path = require('canonical-path');
 var Package = require('dgeni').Package;
 
-var myPackage = new Package('staticContentSite', [require('dgeni-packages/base')]);
+var sitePackage = new Package('staticContentSite', [require('dgeni-packages/base')]);
 
-myPackage.factory(require('./file-readers/raw'));
-myPackage.factory(require('./services/file-reader'));
-myPackage.factory(require('./template-engine/handlebars'));
-myPackage.factory(require('./services/handlebars-template-renderers'));
+sitePackage
+	.factory(require('./file-readers/raw'))
+	.factory(require('./services/file-reader'))
+	.factory(require('./template-engine/handlebars'))
+	.factory(require('./services/handlebars-template-renderers'))
 
-myPackage.processor(require('./processors/split-content'));
-myPackage.processor(require('./processors/content-markdown'));
-myPackage.processor(require('./processors/handlebars-partials'));
-myPackage.processor(require('./processors/handlebars-templates'));
+	.processor(require('./processors/split-content'))
+	.processor(require('./processors/content-markdown'))
+	.processor(require('./processors/handlebars-partials'))
+	.processor(require('./processors/handlebars-templates'));
 
-
-myPackage.config(function(log, writeFilesProcessor, computePathsProcessor) {
+sitePackage.config(function(log, writeFilesProcessor, computePathsProcessor) {
 
 	log.level = 'info';
 
-	//configure the input/output file path
+	//configure the input/output file path on documents
 	computePathsProcessor.pathTemplates.push({
 		docTypes: ['raw'],
 		getOutputPath: function(doc) {
@@ -31,8 +31,9 @@ myPackage.config(function(log, writeFilesProcessor, computePathsProcessor) {
 	});
 });
 
-myPackage.config(function(computeIdsProcessor, readFilesProcessor, rawDocFileReader) {
+sitePackage.config(function(computeIdsProcessor, readFilesProcessor, rawDocFileReader) {
 
+	//configure the mapping for document ids
 	computeIdsProcessor.idTemplates.push({
 		docTypes: ['raw'],
 		getId: function(doc) {
@@ -51,4 +52,4 @@ myPackage.config(function(computeIdsProcessor, readFilesProcessor, rawDocFileRea
 	readFilesProcessor.fileReaders = [rawDocFileReader].concat(readFilesProcessor.fileReaders || []);
 });
 
-module.exports = myPackage;
+module.exports = sitePackage;
