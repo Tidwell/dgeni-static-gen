@@ -1,5 +1,5 @@
 
-[Dgeni][https://github.com/angular/dgeni] package providing a static site generator.
+[Dgeni](https://github.com/angular/dgeni) package providing a static site generator.
 
 Take a folder of markdown documents, conver thme to html, then template through a handlebars template engine before writing out.
 
