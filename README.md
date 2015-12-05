@@ -15,45 +15,71 @@ Outputs:
 
 * A build folder of the documents after having run through the additional/modified dgeni pipeline steps.
 
+- readFilesProcessor (base)
+- computeIdsProcessor (base)
+- computePathsProcessor (base)
+- splitContentProcessor (static-content-site)
+- metadataProcessor (static-content-site)
+- contentMarkdownProcessor (static-content-site)
+- handlebarsPartialsProcessor (handlebars)
+- handlebarsTemplatesProcessor (handlebars)
+- renderDocsProcessor (base)
+- unescapeCommentsProcessor (base)
+- writeFilesProcessor (base)
+- checkAnchorLinksProcessor (base)
 
 
 Example
+
+Setup
+
+Create the folder, setup package.json and install dependancies
+
+```bash
+mkdir mySite
+cd mySite
+npm init
+npm install canonical-path dgeni https://github.com/Tidwell/dgeni-static-gen.git --save
+```
+
+Create the index.js entrypoint and configure the pipeline to run
+
 
 ```javascript
 
 var path = require('canonical-path');
 
 var Dgeni = require('dgeni');
-var staticGuideDgeniPackage = require('static-generator');
+var staticGeneratorPackage = require('static-generator');
 
 /* Create the package for the site generator */
-var testSitePackage = new Dgeni.Package('testSitePackage', [
-	staticGuideDgeniPackage
+var sitePackage = new Dgeni.Package('sitePackage', [
+    staticGeneratorPackage
 ]);
 
 /* Config */
-testSitePackage.config(function(writeFilesProcessor){
-	writeFilesProcessor.outputFolder = path.resolve(process.cwd(), './build');
+sitePackage.config(function(writeFilesProcessor){
+    writeFilesProcessor.outputFolder = path.resolve(process.cwd(), './build');
 });
 
-testSitePackage.config(function(readFilesProcessor) {
-	readFilesProcessor.basePath = './';
-	readFilesProcessor.sourceFiles = [{
-		include: 'content/**/*',
-		basePath: 'content'
-	}];
+sitePackage.config(function(readFilesProcessor) {
+    readFilesProcessor.basePath = './';
+    readFilesProcessor.sourceFiles = [{
+        include: 'content/**/*',
+        basePath: 'content'
+    }];
 });
 
-testSitePackage.config(function(templateFinder){
-	templateFinder.templateFolders.unshift('templates/');
-	templateFinder.templatePatterns.unshift('index.hbs');
+sitePackage.config(function(templateFinder){
+    templateFinder.templateFolders.unshift('templates/');
+    templateFinder.templatePatterns.unshift('index.hbs');
 });
 
 /* Run */
-var dgeni = new Dgeni([testSitePackage]);
+var dgeni = new Dgeni([sitePackage]);
 
 dgeni.generate().then(function(docs) {
-	console.log(docs.length, 'docs generated');
+    console.log(docs.length, 'docs generated');
 });
 
 ```

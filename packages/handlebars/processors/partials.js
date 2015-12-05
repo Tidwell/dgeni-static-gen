@@ -10,6 +10,8 @@ module.exports = function handlebarsPartialsProcessor(log, templateEngine, fileR
 		$runAfter: ['computePathsProcessor'],
 		$runBefore: ['renderDocsProcessor'],
 		$process: function(docs) {
+			if (!templateEngine.partialsFolder) { return docs; }
+
 			//load partials
 			var fileReaderConfig = {
 				include: path.resolve(templateEngine.partialsFolder, '**/*'),
