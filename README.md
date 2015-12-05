@@ -1,9 +1,9 @@
 
 [Dgeni](https://github.com/angular/dgeni) package providing a static site generator.
 
-Take a folder of markdown documents, convert to html, then template through handlebars before writing out.
+Take a folder of files - attach metadata, parse the content as markdown, convert to html, and template through handlebars before writing out.
 
-Add additional dgeni packages to the pipeline for things like metadata, data aggregation, custom formatters, etc.  Great start for building any type of static site - be it promotional, blog, content site, etc.
+Add additional dgeni packages to the pipeline for things like data aggregation, custom formatters, pretty urls, etc.  Great start for building any type of static site - promotional, blog, content site, etc.
 
 
 Expects:
@@ -21,6 +21,7 @@ New Pipeline:
 * computeIdsProcessor (base)
 * computePathsProcessor (base)
 * splitContentProcessor (static-content-site)
+* webpathProcessor (static-content-site)
 * metadataProcessor (static-content-site)
 * contentMarkdownProcessor (static-content-site)
 * handlebarsPartialsProcessor (handlebars)

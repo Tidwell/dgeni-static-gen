@@ -8,8 +8,9 @@ sitePackage
 	.factory(require('./services/file-reader'))
 
 	.processor(require('./processors/split-content'))
-	.processor(require('./processors/metadata'))
-	.processor(require('./processors/content-markdown'))
+	.processor(require('./processors/webpath'))
+	.processor(require('./processors/metadata-json'))
+	.processor(require('./processors/content-markdown'));
 
 sitePackage.config(function(log, writeFilesProcessor, computePathsProcessor) {
 
