@@ -15,18 +15,20 @@ Outputs:
 
 * A build folder of the documents after having run through the additional/modified dgeni pipeline steps.
 
-- readFilesProcessor (base)
-- computeIdsProcessor (base)
-- computePathsProcessor (base)
-- splitContentProcessor (static-content-site)
-- metadataProcessor (static-content-site)
-- contentMarkdownProcessor (static-content-site)
-- handlebarsPartialsProcessor (handlebars)
-- handlebarsTemplatesProcessor (handlebars)
-- renderDocsProcessor (base)
-- unescapeCommentsProcessor (base)
-- writeFilesProcessor (base)
-- checkAnchorLinksProcessor (base)
+New Pipeline:
+
+* readFilesProcessor (base)
+* computeIdsProcessor (base)
+* computePathsProcessor (base)
+* splitContentProcessor (static-content-site)
+* metadataProcessor (static-content-site)
+* contentMarkdownProcessor (static-content-site)
+* handlebarsPartialsProcessor (handlebars)
+* handlebarsTemplatesProcessor (handlebars)
+* renderDocsProcessor (base)
+* unescapeCommentsProcessor (base)
+* writeFilesProcessor (base)
+* checkAnchorLinksProcessor (base)
 
 
 Example
