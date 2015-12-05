@@ -6,13 +6,9 @@ var sitePackage = new Package('staticContentSite', [require('dgeni-packages/base
 sitePackage
 	.factory(require('./file-readers/raw'))
 	.factory(require('./services/file-reader'))
-	.factory(require('./template-engine/handlebars'))
-	.factory(require('./services/handlebars-template-renderers'))
 
 	.processor(require('./processors/split-content'))
 	.processor(require('./processors/content-markdown'))
-	.processor(require('./processors/handlebars-partials'))
-	.processor(require('./processors/handlebars-templates'));
 
 sitePackage.config(function(log, writeFilesProcessor, computePathsProcessor) {
 

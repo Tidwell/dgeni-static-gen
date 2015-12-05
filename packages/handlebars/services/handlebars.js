@@ -20,7 +20,7 @@ module.exports = function templateEngine(templateFinder, fileReader, handlebarsT
 			var self = this;
 
 			//load helpers
-			var builtInHelpers = require('../handlebars-helpers');
+			var builtInHelpers = require('../helpers');
 			var allHelpers = this.helpers.concat(builtInHelpers).concat(this.filters);
 			allHelpers.forEach(function(func){
 				func(handlebars);
