@@ -4,7 +4,7 @@ var Package = require('dgeni').Package;
 var sitePackage = new Package('staticContentSite', [require('dgeni-packages/base')]);
 
 sitePackage
-	.factory(require('./file-readers/raw'))
+	.factory(require('./file-readers/markdown'))
 	.factory(require('./services/file-reader'))
 
 	.processor(require('./processors/split-content'))
@@ -18,7 +18,7 @@ sitePackage.config(function(log, writeFilesProcessor, computePathsProcessor) {
 
 	//configure the input/output file path on documents
 	computePathsProcessor.pathTemplates.push({
-		docTypes: ['raw'],
+		docTypes: ['markdown'],
 		getOutputPath: function(doc) {
 			var newPath = doc.fileInfo.filePath.replace(doc.fileInfo.basePath, writeFilesProcessor.outputFolder);
 			return newPath.replace('.md', '.html');
@@ -29,11 +29,11 @@ sitePackage.config(function(log, writeFilesProcessor, computePathsProcessor) {
 	});
 });
 
-sitePackage.config(function(computeIdsProcessor, readFilesProcessor, rawDocFileReader) {
+sitePackage.config(function(computeIdsProcessor, readFilesProcessor, markdownFileReader) {
 
 	//configure the mapping for document ids
 	computeIdsProcessor.idTemplates.push({
-		docTypes: ['raw'],
+		docTypes: ['markdown'],
 		getId: function(doc) {
 			var docPath = doc.name || doc.codeName;
 			if (!docPath) {
@@ -47,7 +47,7 @@ sitePackage.config(function(computeIdsProcessor, readFilesProcessor, rawDocFileR
 		}
 	});
 
-	readFilesProcessor.fileReaders = [rawDocFileReader].concat(readFilesProcessor.fileReaders || []);
+	readFilesProcessor.fileReaders = [markdownFileReader].concat(readFilesProcessor.fileReaders || []);
 });
 
 module.exports = sitePackage;

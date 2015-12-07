@@ -5,11 +5,15 @@
  */
 module.exports = function splitContentProcessor(log) {
 	return {
+		config: {
+			separator: '\n---\n'
+		},
 		$runAfter: ['computePathsProcessor'],
 		$runBefore: ['renderDocsProcessor'],
 		$process: function(docs) {
+			var self = this;
 			docs.forEach(function(doc){
-				var splitContent = doc.fileInfo.content.split('\n---\n');
+				var splitContent = doc.fileInfo.content.split(self.config.separator);
 
 				doc.metadata = '';
 				doc.fileInfo.content = '';

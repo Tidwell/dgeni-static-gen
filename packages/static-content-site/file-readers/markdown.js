@@ -1,12 +1,12 @@
 /**
- * @dgService rawDocFileReader
+ * @dgService markdownFileReader
  * @description
- * This file reader will create a simple doc for each document read
+ * This file reader will create a simple doc for each markdown document read
  */
-module.exports = function rawDocFileReader(log) {
+module.exports = function markdownFileReader(log) {
 	return {
-		name: 'rawDocFileReader',
-		defaultPattern: /\.*d$/,
+		name: 'markdownFileReader',
+		defaultPattern: /\.*.md$/,
 		getDocs: function(fileInfo) {
 			try {
 				fileInfo.name = fileInfo.filePath;
@@ -17,7 +17,7 @@ module.exports = function rawDocFileReader(log) {
 			}
 
 			return [{
-				docType: 'raw'
+				docType: 'markdown'
 			}];
 		}
 	};
