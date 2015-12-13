@@ -1,4 +1,4 @@
-
+![Build status](https://travis-ci.org/Tidwell/dgeni-static-gen.svg?branch=master)
 [Dgeni](https://github.com/angular/dgeni) package providing a static site generator.
 
 Take a folder of files - attach metadata, parse the content as markdown, convert to html, and template through handlebars before writing out.
