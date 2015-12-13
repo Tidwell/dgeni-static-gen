@@ -1,6 +1,6 @@
 var Dgeni = require('dgeni');
 
-var packages = [require('./packages/static-content-site'), require('./packages/handlebars')];
+var packages = [require('./static-content-site'), require('./handlebars')];
 
 var generatorPackage = new Dgeni.Package('siteGenerator', packages);
 
