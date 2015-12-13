@@ -13,7 +13,7 @@ module.exports = function templateEngine(templateFinder, fileReader, handlebarsT
 		partialsFolder: '',
 		helpers: [],
 		filters: [],
-		tags: [],
+		
 		handlebars: handlebars,
 
 		getRenderer: function() {
