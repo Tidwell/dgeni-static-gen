@@ -19,6 +19,7 @@ module.exports = function handlebarsPartialsProcessor(log, templateEngine, fileR
 			};
 			
 			return fileReader(fileReaderConfig).then(function(partialDocs) {
+				if (!partialDocs) { return docs; }
 				partialDocs.forEach(function(doc) {
 					var partialName = doc.fileName.replace('.hbs', '');
 					templateEngine.handlebars.registerPartial(partialName, templateEngine.handlebars.compile(doc.content));

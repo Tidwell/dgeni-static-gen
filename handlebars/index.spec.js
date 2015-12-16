@@ -61,20 +61,4 @@ describe('handlebars package', function() {
   it("should be instance of Package", function() {
       expect(handlebarsPackage instanceof Dgeni.Package).toBeTruthy();
   });
-
-
-  describe("templateEngine", function() {
-
-    it("should have helpers, filters, and tags", function(done) {
-      handlebarsPackage.config(function(templateEngine){
-        expect(templateEngine.helpers).toBeArray();
-        expect(templateEngine.filters).toBeArray();
-        expect(templateEngine.tags).toBeArray();
-      });
-      runDgeni([]).then(function() {
-        done();
-      });
-    });
-  });
-
 });
