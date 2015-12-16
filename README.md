@@ -87,3 +87,17 @@ dgeni.generate().then(function(docs) {
 });
 
 ```
+
+
+##Develop
+
+``git clone https://github.com/Tidwell/dgeni-static-gen.git``
+
+``cd dgeni-static-gen``
+
+``npm install``
+
+
+##Run Tests
+
+``npm test``
